@@ -8,7 +8,7 @@ npm install
 Node.js
 
 # Usage
-Access http://<IP>:<Port>/random
+Access http://&lt;IP&gt;:&lt;Port&gt;/random
 
 # License
 MIT
