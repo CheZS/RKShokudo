@@ -28,7 +28,22 @@ app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
 // router
 ////////////////////////////
 app.get('/random', (req, res) => {
-	res.send(restaurants[Math.floor(Math.random() * restaurants.length)]);
+	var rand = Math.floor(Math.random() * restaurants.sumValue);
+	var restaurant = restaurants.list[0].name;
+	for (var i = 0; i < restaurants.list.length; i++) {
+		rand -= restaurants.list[i].value;
+		if (rand < 0) {
+			restaurant = restaurants.list[i].name;
+			break;
+		}
+	}
+	var head = '<head></head>';
+	var body = '<body><p style="font-size:200">' + restaurant + '</p><a href="/random" style="font-size:80">try again</a></body>';
+	res.send('<html>' + head + body + '</html>');
+});
+
+app.get('/list', (req, res) => {
+	res.send(JSON.stringify(restaurants));
 });
 
 app.listen(app.get('port'), () => {
