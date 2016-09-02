@@ -1,8 +1,7 @@
-
 var inside = [
 	{
 		name: "重庆小面",
-		value: 10
+		value: 5
 	},
 	{
 		name: "真功夫",
@@ -14,11 +13,11 @@ var inside = [
 	},
 	{
 		name: "Subway",
-		value: 10
+		value: 7
 	},
 	{
 		name: "罗森",
-		value: 10
+		value: 5
 	},
 	{
 		name: "顺口溜",
@@ -45,7 +44,7 @@ var outside = [
 	},
 	{
 		name: "物理所",
-		value: 1
+		value: 5
 	},
 	{
 		name: "绫罗岛",
@@ -61,7 +60,19 @@ var outside = [
 	// },
 	{
 		name: "食堂",
-		value: 10
+		value: 5
+	},
+	{
+		name: "小江南",
+		value: 5
+	},
+	{
+		name: "山里城",
+		value: 5
+	},
+	{
+		name: "九朝一品",
+		value: 5
 	}
 ];
 
