@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var log4js = require('log4js');
+var path = require('path');
 
 var restaurants = require('./restaurants');
 ////////////////////////////
@@ -23,7 +24,7 @@ logger.setLevel('INFO');
 
 app.set('port', 10080);
 app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
-app.use(express.static('static'));
+app.use(express.static(path.join(__dirname, './static')));
 
 ////////////////////////////
 // router
