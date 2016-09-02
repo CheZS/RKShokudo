@@ -23,11 +23,12 @@ logger.setLevel('INFO');
 
 app.set('port', 10080);
 app.use(log4js.connectLogger(logger, {level: log4js.levels.INFO}));
+app.use(express.static('static'));
 
 ////////////////////////////
 // router
 ////////////////////////////
-app.get('/random', (req, res) => {
+app.get('/', (req, res) => {
 	var rand = Math.floor(Math.random() * restaurants.sumValue);
 	var restaurant = restaurants.list[0].name;
 	for (var i = 0; i < restaurants.list.length; i++) {
@@ -38,8 +39,23 @@ app.get('/random', (req, res) => {
 		}
 	}
 	var head = '<head></head>';
-	var body = '<body><p style="font-size:200">' + restaurant + '</p><a href="/random" style="font-size:80">try again</a></body>';
+	var script = '<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>';
+	script += '<script src="rkshokudo.js"></script>'
+	var body = '<body><p id="restaurant" style="font-size:200">' + restaurant + '</p><button type="button" id="randomButton" style="font-size:80">try again</button>' + script + '</body>';
 	res.send('<html>' + head + body + '</html>');
+});
+
+app.get('/random', (req, res) => {
+	var rand = Math.floor(Math.random() * restaurants.sumValue);
+	var restaurant = restaurants.list[0].name;
+	for (var i = 0; i < restaurants.list.length; i++) {
+		rand -= restaurants.list[i].value;
+		if (rand < 0) {
+			restaurant = restaurants.list[i].name;
+			break;
+		}
+	}
+	res.send(restaurant);
 });
 
 app.get('/list', (req, res) => {
