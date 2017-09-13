@@ -1,15 +1,45 @@
 {
   "name": "rk-shokudo",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Restaurant recommendation for Raycom Info Tech Park",
+  "main": "index.js",
   "scripts": {
+    "build": "npm run clean && npm run scripts",
+    "clean": "shx rm -rf dist",
+    "scripts": "npm run eslint && npm run umd",
+    "eslint": "eslint src || true",
+    "umd": "webpack --config webpack.umd.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CheZS",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CheZS/RKShokudo.git"
+  },
+  "keywords": [
+    "Raycom Info Tech Park",
+    "restaurant recommend"
+  ],
+  "registry": "https://www.npmjs.com/",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "express": "^4.14.0",
     "log4js": "^0.6.38"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "shx": "^0.2.2",
+    "webpack": "^3.5.6"
   }
 }
