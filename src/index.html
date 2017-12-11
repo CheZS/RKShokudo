@@ -45,16 +45,24 @@
       background-color: #ec407a;
       color: #ffffff;
     }
+
+    .loading-container {
+      height: 3.6rem;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="panel">
       <div class="panel-header text-center">
-        <div class="panel-title h2 mt-10">Random A Restaurant</div>
+        <div class="panel-title h2 mt-10">Chi Shen Me?</div>
       </div>
       <div class="panel-body text-center">
-        <div id="restaurant" class="h2 mt-10 color-pink-600">Loading...</div>
+        <div id="loading" class="h2 mt-10 color-pink-600 loading-container">Loading...</div>
+        <div id="content" class="d-none">
+          <div id="restaurant" class="h2 mt-10 color-pink-600">Loading...</div>
+          <div id="timestamp" class="text-gray"></div>
+        </div>
       </div>
       <div class="panel-footer text-center">
         <button type="button" id="randomButton" class="btn btn-pink-400">try again</button>
@@ -65,16 +73,28 @@
   <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
   <script>
     function getRandomRestaurant() {
-      var randomButton = $("#randomButton");
-      randomButton.addClass('loading');
+      intoLoading();
       $.ajax({method: "GET", url: "random"}).done(function(data) {
         if (!data) {
           return;
         }
         $("#restaurant")[0].innerHTML = data;
+        $("#timestamp")[0].innerHTML = new Date().toLocaleString();
       }).always(function() {
-        randomButton.removeClass('loading');
+        leaveLoading();
       });
+    }
+
+    function intoLoading() {
+      $("#randomButton").addClass('loading');
+      $("#loading").removeClass('d-none');
+      $("#content").addClass('d-none');
+    }
+
+    function leaveLoading() {
+      $("#randomButton").removeClass('loading');
+      $("#loading").addClass('d-none');
+      $("#content").removeClass('d-none');
     }
 
     $("#randomButton").click(getRandomRestaurant);
