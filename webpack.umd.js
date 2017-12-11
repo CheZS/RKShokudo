@@ -20,6 +20,10 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel-loader',
             exclude: path.resolve(__dirname, 'node_modules')
+        }, {
+            test: /\.html$/,
+            loader: 'html-loader',
+            exclude: path.resolve(__dirname, 'node_modules')
         }]
     },
     externals: {
