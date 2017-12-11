@@ -4,6 +4,7 @@ import {
 import logger from './logger';
 import RestaurantRecommender from './restaurantRecommender';
 import template from './index.html';
+import manifest from './manifest.json';
 
 const rootRouter = new Router();
 const recommender = new RestaurantRecommender();
@@ -20,6 +21,10 @@ rootRouter.get('/random', (req, res) => {
 
 rootRouter.get('/list', (req, res) => {
     res.send(JSON.stringify(recommender.getAll()));
+});
+
+rootRouter.get('/manifest.json', (req, res) => {
+    res.send(manifest);
 });
 
 export default rootRouter;
