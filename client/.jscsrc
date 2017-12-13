@@ -1,0 +1,15 @@
+{
+  "preset": "google",
+  "validateIndentation": {
+    "value": 2,
+    "allExcept": ["comments"]
+  },
+  "maximumLineLength": {
+    "value": 100,
+    "allExcept": ["comments"]
+  },
+  "disallowMultipleVarDecl": false,
+  "disallowMultipleLineBreaks": false,
+  "disallowTrailingWhitespace": "ignoreEmptyLines",
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+}

@@ -1,0 +1,31 @@
+.panel {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 100%;
+  border: none;
+}
+
+.btn-pink-400 {
+  color: #ec407a;
+  border-color: #ec407a;
+}
+
+.btn-pink-400:focus, .btn-pink-400:hover {
+  background-color: #fce4ec;
+  border-color: #ec407a;
+}
+
+.btn-pink-400:active {
+  border-color: #ec407a;
+  background-color: #ec407a;
+  color: #ffffff;
+}
+
+.loading-container {
+  height: 4.8rem;
+}
+
+.avatar {
+  background-color: transparent;
+}
