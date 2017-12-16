@@ -4,10 +4,16 @@
   "description": "Restaurant recommendation for Raycom Info Tech Park",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && npm run scripts",
+    "preinstall": "cd client && npm i && cd ..",
+    "build": "npm run buildclient && npm run buildserver",
+    "buildserver": "npm run clean && npm run scripts",
+    "buildclient": "cd client && npm run build && cd ..",
+    "start": "PORT=8088 node dist/app.js",
+    "serve": "pm2 start dist/rk-shokudo.umd.js",
     "clean": "shx rm -rf dist",
-    "scripts": "npm run eslint && npm run umd",
+    "scripts": "npm run eslint && npm run babel",
     "eslint": "eslint src || true",
+    "babel": "babel src -d dist",
     "umd": "webpack --config webpack.umd.js --progress --colors",
     "test": "karma start"
   },
@@ -26,6 +32,7 @@
     "dist"
   ],
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.14.0",
     "log4js": "^0.6.38"
   },
@@ -43,6 +50,7 @@
     "jasmine": "^2.8.0",
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.1",
+    "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",

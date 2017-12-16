@@ -3,31 +3,23 @@ import {
 } from 'express';
 import logger from './logger';
 import RestaurantRecommender from './restaurantRecommender';
-import template from './index.html';
-import manifest from './manifest.json';
 
-const rootRouter = new Router();
+const apiRouter = new Router();
 const recommender = new RestaurantRecommender();
 
-rootRouter.use(logMiddleware);
+apiRouter.use(logMiddleware);
 
-rootRouter.get('/', (req, res) => {
-    res.send(template);
+apiRouter.get('/random', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ name: recommender.randomGetRestaurantName() }));
 });
 
-rootRouter.get('/random', (req, res) => {
-    res.send(recommender.randomGetRestaurantName());
-});
-
-rootRouter.get('/list', (req, res) => {
+apiRouter.get('/list', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(recommender.getAll()));
 });
 
-rootRouter.get('/manifest.json', (req, res) => {
-    res.send(manifest);
-});
-
-export default rootRouter;
+export default apiRouter;
 
 function logMiddleware(req, res, next) {
     let msg = {

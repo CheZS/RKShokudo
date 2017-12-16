@@ -2,7 +2,7 @@ import express from 'express';
 import log4js from 'log4js';
 import path from 'path';
 import logger from './logger';
-import rootRouter from './router';
+import apiRouter from './router';
 
 const app = express();
 
@@ -10,10 +10,10 @@ configServer(app);
 launchServer(app);
 
 function configServer(app) {
-    app.set('port', 10080);
+    app.set('port', process.env.PORT || 10080);
     app.use(log4js.connectLogger(logger));
-    app.use(express.static(path.join(__dirname, '../static')));
-    app.use('/', rootRouter);
+    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.use('/api', apiRouter);
 }
 
 function launchServer(app) {
