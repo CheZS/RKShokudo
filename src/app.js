@@ -10,7 +10,7 @@ configServer(app);
 launchServer(app);
 
 function configServer(app) {
-    app.set('port', process.env.PORT || 10080);
+    app.set('port', process.env.PORT || 80);
     app.use(log4js.connectLogger(logger));
     app.use(express.static(path.join(__dirname, '../client/dist')));
     app.use('/api', apiRouter);

@@ -9,7 +9,7 @@
     "buildserver": "npm run clean && npm run scripts",
     "buildclient": "cd client && npm run build && cd ..",
     "start": "PORT=8088 node dist/app.js",
-    "serve": "pm2 start dist/rk-shokudo.umd.js",
+    "serve": "pm2 start dist/app.js",
     "clean": "shx rm -rf dist",
     "scripts": "npm run eslint && npm run babel",
     "eslint": "eslint src || true",
@@ -37,6 +37,7 @@
     "log4js": "^0.6.38"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.0",
     "babel-loader": "^7.1.2",
